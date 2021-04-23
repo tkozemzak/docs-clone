@@ -55,6 +55,19 @@ const TextEditor = () => {
     setQuill(q);
   }, []);
 
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+    const handler = (delta) => {
+      quill.updateContents(delta);
+    };
+
+    socket.on("receive-changes", handler);
+
+    return () => {
+      socket.off("receive-changes", handler);
+    };
+  }, [socket, quill]);
+
   return <div className="container" ref={wrapperRef}></div>;
 };
 

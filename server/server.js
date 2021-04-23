@@ -9,7 +9,7 @@ const io = require("socket.io")(process.env.PORT, {
 
 io.on("connection", (socket) => {
   socket.on("send-changes", (delta) => {
-    console.log("Delta", delta);
+    socket.broadcast.emit("receive-changes", delta);
   });
   console.log("Connected");
 });
