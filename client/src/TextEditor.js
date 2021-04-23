@@ -11,7 +11,7 @@ const TextEditor = () => {
     new Quill(editor, { theme: "snow" });
   }, []);
 
-  return <div id="container" ref={wrapperRef}></div>;
+  return <div className="container" ref={wrapperRef}></div>;
 };
 
 export default TextEditor;
